@@ -4,16 +4,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  createUser(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
-
-  findUsers() {
+  getUser() {
     return `This action returns all users`;
   }
 
-  findUser(id: number) {
-    return `This action returns a #${id} user`;
+  createUser(createUserDto: CreateUserDto) {
+    return 'This action adds a new user';
   }
 
   updateUser(id: number, updateUserDto: UpdateUserDto) {
@@ -21,6 +17,18 @@ export class UsersService {
   }
 
   deleteUser(id: number) {
-    return `This action removes a #${id} user`;
+    return `deleteUser`;
+  }
+
+  getUserTag(id) {
+    return `getUserTag`;
+  }
+
+  createUserTag(userTags) {
+    return `createUserTag`;
+  }
+
+  deleteUserTag(id: number) {
+    return `deleteUserTag`;
   }
 }
