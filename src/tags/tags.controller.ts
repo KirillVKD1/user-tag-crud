@@ -1,30 +1,44 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
+import { CreateTagRes, GetTagRes, GetTagsRes, Tag, UpdateTag } from './tags.dto';
 import { TagsService } from './tags.service';
-import { CreateTagDto } from './dto/create-tag.dto';
-import { UpdateTagDto } from './dto/update-tag.dto';
 
 @Controller('tag')
 export class TagsController {
   constructor(private readonly tagsService: TagsService) { }
 
   @Get()
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetTagsRes,
+  })
   getTags() {
     return this.tagsService.getTags();
   }
 
   @Get(':id')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetTagRes,
+  })
   getTag(@Param('id') id: string) {
     return this.tagsService.getTag(+id);
   }
-
   @Post()
-  createTag(@Body() createTagDto: CreateTagDto) {
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: CreateTagRes,
+  })
+  createTag(@Body() createTagDto: Tag) {
     return this.tagsService.createTag(createTagDto);
   }
 
-
-  @Patch(':id')
-  updateTag(@Param('id') id: string, @Body() updateTagDto: UpdateTagDto) {
+  @Put(':id')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetTagRes,
+  })
+  updateTag(@Param('id') id: string, @Body() updateTagDto: UpdateTag) {
     return this.tagsService.updateTag(+id, updateTagDto);
   }
 

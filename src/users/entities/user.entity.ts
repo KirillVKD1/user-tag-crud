@@ -5,6 +5,6 @@ export class UserEntity extends Model {
 
     uid: string;
     email: string; 
-    password!: string;
+    password: string;
     nickname: string;
 }

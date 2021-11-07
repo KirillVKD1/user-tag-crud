@@ -1,13 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTagDto } from './dto/create-tag.dto';
-import { UpdateTagDto } from './dto/update-tag.dto';
+import { Tag, UpdateTag } from './tags.dto';
 
 @Injectable()
 export class TagsService {
-  createTag(createTagDto: CreateTagDto) {
-    return 'This action adds a new tag';
-  }
-
   getTags() {
     return `This action returns all tags`;
   }
@@ -16,7 +11,11 @@ export class TagsService {
     return `This action returns a #${id} tag`;
   }
 
-  updateTag(id: number, updateTagDto: UpdateTagDto) {
+  createTag(tag: Tag) {
+    return 'This action adds a new tag';
+  }
+
+  updateTag(id: number, tag: UpdateTag) {
     return `This action updates a #${id} tag`;
   }
 

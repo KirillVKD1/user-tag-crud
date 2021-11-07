@@ -1,42 +1,62 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus } from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
+import { CreateUserTagDto, CreateUserTagResDto, GetUserResDto, UpdateUserDto, UpdateUserResDto } from './users.dto';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+
 
 @Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Get(':id')
-  getUser(@Param('id') id: string) {
+  @Get()
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: GetUserResDto,
+  })
+  getUser() {
     return this.usersService.getUser();
   }
 
-  @Put(':id')
+  @Put()
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: UpdateUserResDto,
+  })
   updateUser(
-    @Param('id') id: number,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() user: UpdateUserDto
   ) {
-    return this.usersService.updateUser(id, updateUserDto);
+    return this.usersService.updateUser(user);
   }
   //check if duplicate email, nickname
 
-  @Delete(':id')
-  deleteUser(@Param('id') id: string) {
-    return this.usersService.deleteUser(+id);
-  } 
-
-  @Get(':id')
-  getUserTag(@Param('id') id: string) {
-    return this.usersService.getUserTag(id);
+  @Delete()
+  deleteUser() {
+    return this.usersService.deleteUser();
   }
 
-  @Post()
-  createUserTag( @Body() userTags) {
-    return this.usersService.createUserTag(userTags);
-  } 
+  @Get('tag/my') 
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: CreateUserTagResDto,
+  })
+  getUserTags(@Param('id') id: string) {
+    return this.usersService.getUserTags();
+  }
 
-  @Delete(':id')
+  @Post('tag')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: CreateUserTagResDto,
+  })
+  createUserTags(@Body() tag: CreateUserTagDto) {
+    return this.usersService.createUserTags(tag);
+  }
+
+  @Delete('tag/:id')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: CreateUserTagResDto,
+  })
   deleteUserTag(@Param('id') id: number) {
     return this.usersService.deleteUserTag(id);
   }

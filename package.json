@@ -20,7 +20,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migrate:make": "knex migrate:make --knexfile database/knexfile.ts",
-    "migrate:latest": "knex migrate:latest --knexfile database/knexfile.ts", 
+    "migrate:latest": "knex migrate:latest --knexfile database/knexfile.ts",
     "migrate:rollback": "knex migrate:rollback --knexfile database/knexfile.ts",
     "migrate:up": "knex migrate:up --knexfile database/knexfile.ts",
     "migrate:down": "knex migrate:down --knexfile database/knexfile.ts",
@@ -31,6 +31,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.4",
     "@willsoto/nestjs-objection": "^5.0.0",
     "dotenv": "^10.0.0",
     "knex": "^0.21.19",
@@ -38,7 +39,8 @@
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

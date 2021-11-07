@@ -1,19 +1,29 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, Res } from '@nestjs/common';
+import { ApiAcceptedResponse, ApiResponse } from '@nestjs/swagger';
+import { CreateUserDto } from 'src/users/users.dto';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { LoginDto, AuthResDto } from './auth.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('signin')
-  signIn(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.signIn(createAuthDto);
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: AuthResDto,
+  })
+  signIn(@Body() user: CreateUserDto) {
+    return this.authService.signIn(user);
   }
 
   @Post('login')
-  login() {
-    return this.authService.login();
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: AuthResDto,
+  })
+  login(@Body() user: LoginDto) {
+    return this.authService.login(user);
   }
 
   @Post('logout')
