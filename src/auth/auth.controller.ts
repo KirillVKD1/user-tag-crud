@@ -1,12 +1,12 @@
 import { Controller, Post, Body, HttpStatus, Res } from '@nestjs/common';
-import { ApiAcceptedResponse, ApiResponse } from '@nestjs/swagger';
-import { CreateUserDto } from 'src/users/users.dto';
+import { ApiResponse } from '@nestjs/swagger';
+import { CreateUserDto } from '../users/users.dto';
 import { AuthService } from './auth.service';
 import { LoginDto, AuthResDto } from './auth.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @Post('signin')
   @ApiResponse({

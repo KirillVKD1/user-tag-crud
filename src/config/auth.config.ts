@@ -1,3 +1,3 @@
 export default {
-  salt: +process.env.AUTH_SALT || 10,
+  salt: Number(process.env.AUTH_SALT) || 10,
 };

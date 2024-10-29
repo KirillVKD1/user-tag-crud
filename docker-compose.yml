@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: $SQL_USERNAME
       POSTGRES_DB: $SQL_DBNAME
     ports:
-      - '5432:5432'
+      - '${DB_PORT}:5432'
     volumes: 
       - ./host-folder/:/var/lib/postgresql/data/
      

@@ -1,12 +1,26 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+  HttpStatus,
+} from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
-import { CreateUserTagDto, CreateUserTagResDto, GetUserResDto, UpdateUserDto, UpdateUserResDto } from './users.dto';
+import {
+  CreateUserTagDto,
+  CreateUserTagResDto,
+  GetUserResDto,
+  UpdateUserDto,
+  UpdateUserResDto,
+} from './users.dto';
 import { UsersService } from './users.service';
-
 
 @Controller('user')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Get()
   @ApiResponse({
@@ -22,9 +36,7 @@ export class UsersController {
     status: HttpStatus.OK,
     type: UpdateUserResDto,
   })
-  updateUser(
-    @Body() user: UpdateUserDto
-  ) {
+  updateUser(@Body() user: UpdateUserDto) {
     return this.usersService.updateUser(user);
   }
   //check if duplicate email, nickname
@@ -34,7 +46,7 @@ export class UsersController {
     return this.usersService.deleteUser();
   }
 
-  @Get('tag/my') 
+  @Get('tag/my')
   @ApiResponse({
     status: HttpStatus.OK,
     type: CreateUserTagResDto,

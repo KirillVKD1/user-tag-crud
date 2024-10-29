@@ -1,11 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpStatus,
+  Put,
+} from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
-import { CreateTagRes, GetTagRes, GetTagsRes, Tag, UpdateTag } from './tags.dto';
+import {
+  CreateTagRes,
+  GetTagRes,
+  GetTagsRes,
+  Tag,
+  UpdateTag,
+} from './tags.dto';
 import { TagsService } from './tags.service';
 
 @Controller('tag')
 export class TagsController {
-  constructor(private readonly tagsService: TagsService) { }
+  constructor(private readonly tagsService: TagsService) {}
 
   @Get()
   @ApiResponse({

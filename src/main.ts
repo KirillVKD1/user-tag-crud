@@ -6,8 +6,8 @@ import { useSwagger } from './utils/swagger.util';
 async function bootstrap() {
   try {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
-    app.enableCors()
-    useSwagger(app)
+    app.enableCors();
+    useSwagger(app);
     await app.listen(3000);
   } catch (err) {
     console.log('Error during app init.', err);
